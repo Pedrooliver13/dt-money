@@ -13,7 +13,9 @@ export const Header = (): ReactElement => {
       <Styled.HeaderContent>
         <img src={LogoImg} alt="Logo marca da DT-MONEY" />
 
-        <button>Nova transação</button>
+        <Styled.NewTransactionButton>
+          Nova transação
+        </Styled.NewTransactionButton>
       </Styled.HeaderContent>
     </Styled.HeaderContainer>
   );
