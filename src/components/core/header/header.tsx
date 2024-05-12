@@ -2,6 +2,9 @@
 import { ReactElement } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
+// Components
+import { NewTransactionModal } from "components/shared";
+
 // Assets
 import LogoImg from "assets/dt-money-logo.svg";
 
@@ -21,14 +24,7 @@ export const Header = (): ReactElement => {
             </Styled.NewTransactionButton>
           </Dialog.Trigger>
 
-          <Dialog.Portal>
-            <Dialog.Overlay />
-            <Dialog.Content>
-              <Dialog.Title>Nova transação</Dialog.Title>
-
-              <Dialog.Close />
-            </Dialog.Content>
-          </Dialog.Portal>
+          <NewTransactionModal />
         </Dialog.Root>
       </Styled.HeaderContent>
     </Styled.HeaderContainer>
