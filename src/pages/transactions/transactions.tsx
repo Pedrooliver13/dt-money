@@ -2,6 +2,7 @@
 import { ReactElement } from "react";
 
 // Components
+import { SearchForm } from "components/shared";
 import { Header, Summary } from "components/core";
 
 // Styles
@@ -14,6 +15,8 @@ export const Transactions = (): ReactElement => {
       <Summary />
 
       <Styled.TransactionsContainer>
+        <SearchForm />
+
         <Styled.TransactionsTable>
           <tbody>
             <tr>
