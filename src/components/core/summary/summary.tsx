@@ -18,7 +18,7 @@ export const Summary = (): ReactElement => {
           <ArrowCircleUpIcon size={32} color="#00b37e" />
         </header>
 
-        <div>R$ 17.400,00</div>
+        <strong>R$ 17.400,00</strong>
       </Styled.SummaryCard>
 
       <Styled.SummaryCard>
@@ -27,7 +27,7 @@ export const Summary = (): ReactElement => {
           <ArrowCircleDownIcon size={32} color="#f75a68" />
         </header>
 
-        <div>R$ 17.400,00</div>
+        <strong>R$ 17.400,00</strong>
       </Styled.SummaryCard>
 
       <Styled.SummaryCard variant="green">
@@ -36,7 +36,7 @@ export const Summary = (): ReactElement => {
           <CurrencyDollarIcon size={32} color="#fff" />
         </header>
 
-        <div>R$ 17.400,00</div>
+        <strong>R$ 17.400,00</strong>
       </Styled.SummaryCard>
     </Styled.SummaryContainer>
   );

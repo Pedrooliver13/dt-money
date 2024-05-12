@@ -21,7 +21,7 @@ export const Content = styled(Dialog.Content)`
     min-width: 32rem;
     border-radius: 6px;
     padding: 2.5rem 3rem;
-    background-color: ${theme["gray-500"]};
+    background-color: ${theme["gray-800"]};
 
     top: 50%;
     left: 50%;
@@ -49,17 +49,16 @@ export const Content = styled(Dialog.Content)`
       button[type="submit"] {
         height: 50px;
         border: 0;
-        background: ${theme["gray-500"]};
+        background: ${theme["green-500"]};
         color: ${theme.white};
         font-weight: bold;
         padding: 0 1.25rem;
         border-radius: 6px;
         margin-top: 1.5rem;
-
         cursor: pointer;
 
         &:hover {
-          background-color: ${theme["gray-700"]};
+          background-color: ${theme["green-700"]};
           transition: background-color 0.2s;
         }
       }
