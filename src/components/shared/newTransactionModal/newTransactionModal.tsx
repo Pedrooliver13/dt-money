@@ -27,12 +27,12 @@ export const NewTransactionModal = (): ReactElement => {
           <input type="text" placeholder="Categoria" required />
 
           <Styled.TransactionType>
-            <Styled.TransactionTypeButton variant="income">
+            <Styled.TransactionTypeButton variant="income" value="income">
               <ArrowCircleUpIcon size={24} />
               Entrada
             </Styled.TransactionTypeButton>
 
-            <Styled.TransactionTypeButton variant="outcome">
+            <Styled.TransactionTypeButton variant="outcome" value="outcome">
               <ArrowCircleDown size={24} />
               Saída
             </Styled.TransactionTypeButton>
