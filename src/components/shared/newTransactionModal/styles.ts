@@ -2,6 +2,10 @@
 import styled, { css } from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
 
+interface TransactionTypeButtonProps {
+  variant: "income" | "outcome";
+}
+
 export const Overlay = styled(Dialog.Overlay)`
   position: fixed;
   width: 100%;
@@ -72,5 +76,31 @@ export const CloseButton = styled(Dialog.Close)`
     line-height: 0;
     cursor: pointer;
     color: ${theme["gray-500"]};
+  `}
+`;
+
+export const TransactionType = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+`;
+
+export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
+  ${({ theme, variant }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: ${theme["gray-700"]};
+    border-radius: 6px;
+    padding: 1rem;
+    border: 0;
+    cursor: pointer;
+    color: ${theme["gray-300"]};
+
+    svg {
+      color: ${variant === "income" ? theme["green-300"] : theme["red-300"]};
+    }
   `}
 `;

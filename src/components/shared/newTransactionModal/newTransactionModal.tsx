@@ -1,7 +1,11 @@
 // Packages
 import { ReactElement } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { X as XIcon } from "phosphor-react";
+import {
+  ArrowCircleDown,
+  ArrowCircleUp as ArrowCircleUpIcon,
+  X as XIcon,
+} from "phosphor-react";
 
 // Styles
 import * as Styled from "./styles";
@@ -21,6 +25,18 @@ export const NewTransactionModal = (): ReactElement => {
           <input type="text" placeholder="Descrição" required />
           <input type="number" placeholder="Preço" required />
           <input type="text" placeholder="Categoria" required />
+
+          <Styled.TransactionType>
+            <Styled.TransactionTypeButton variant="income">
+              <ArrowCircleUpIcon size={24} />
+              Entrada
+            </Styled.TransactionTypeButton>
+
+            <Styled.TransactionTypeButton variant="outcome">
+              <ArrowCircleDown size={24} />
+              Saída
+            </Styled.TransactionTypeButton>
+          </Styled.TransactionType>
 
           <button type="submit">Cadastrar</button>
         </form>
