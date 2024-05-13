@@ -1,5 +1,7 @@
+import { useTransactionContext } from "hooks/useTransactionContext";
+
 // Packages
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement } from "react";
 
 // Components
 import { SearchForm } from "components/shared";
@@ -8,28 +10,8 @@ import { Header, Summary } from "components/core";
 // Styles
 import * as Styled from "./styles";
 
-interface Transaction {
-  id: number;
-  description: string;
-  type: "income" | "outcome";
-  category: string;
-  price: number;
-  createdAt: string;
-}
-
 export const Transactions = (): ReactElement => {
-  const [transactions, setTransactions] = useState<Array<Transaction>>([]);
-
-  async function loadTransactions(): Promise<void> {
-    const response = await fetch("http://localhost:3333/transactions");
-    const data = await response.json();
-
-    setTransactions(data);
-  }
-
-  useEffect(() => {
-    loadTransactions();
-  }, []);
+  const { transactions } = useTransactionContext();
 
   return (
     <div>
