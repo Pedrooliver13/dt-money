@@ -7,7 +7,7 @@ import {
 } from "phosphor-react";
 
 // Hooks
-import { useTransactionContext } from "hooks/useTransactionContext";
+import { useSummary } from "hooks/useSummary";
 
 // Utils
 import { priceFormatter } from "utils/formatter";
@@ -16,26 +16,7 @@ import { priceFormatter } from "utils/formatter";
 import * as Styled from "./styles";
 
 export const Summary = (): ReactElement => {
-  const { transactions } = useTransactionContext();
-
-  const summary = transactions.reduce(
-    (acc, transaction) => {
-      if (transaction.type === "income") {
-        acc.income += transaction?.price;
-        acc.total += transaction?.price;
-      } else {
-        acc.outcome += transaction?.price;
-        acc.total -= transaction?.price;
-      }
-
-      return acc;
-    },
-    {
-      income: 0,
-      outcome: 0,
-      total: 0,
-    }
-  );
+  const summary = useSummary();
 
   return (
     <Styled.SummaryContainer>
