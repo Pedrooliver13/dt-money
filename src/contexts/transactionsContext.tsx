@@ -1,5 +1,5 @@
 // Packages
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState, useCallback } from "react";
 import { createContext } from "use-context-selector";
 
 // Libs
@@ -38,39 +38,41 @@ export const TransactionsProvider = ({
 }: TransactionsProviderProps): ReactElement => {
   const [transactions, setTransactions] = useState<Array<Transaction>>([]);
 
-  async function fetchTransactions(query?: string): Promise<void> {
-    console.log("query", query);
+  const fetchTransactions = useCallback(
+    async (query?: string): Promise<void> => {
+      const response = await api.get(`/transactions`, {
+        params: {
+          _sort: "createdAt",
+          _order: "desc",
+          q: query,
+        },
+      });
 
-    const response = await api.get(`/transactions`, {
-      params: {
-        _sort: "createdAt",
-        _order: "desc",
-        q: query,
-      },
-    });
+      setTransactions(response?.data);
+    },
+    []
+  );
 
-    setTransactions(response?.data);
-  }
+  const createTransaction = useCallback(
+    async (data: CreateTransactionInput): Promise<void> => {
+      const { category, description, price, type } = data;
 
-  async function createTransaction(
-    data: CreateTransactionInput
-  ): Promise<void> {
-    const { category, description, price, type } = data;
+      const response = await api.post("/transactions", {
+        category,
+        description,
+        price,
+        type,
+        createdAt: new Date().toISOString(),
+      });
 
-    const response = await api.post("/transactions", {
-      category,
-      description,
-      price,
-      type,
-      createdAt: new Date().toISOString(),
-    });
-
-    setTransactions((state) => [response.data, ...state]);
-  }
+      setTransactions((state) => [response.data, ...state]);
+    },
+    []
+  );
 
   useEffect(() => {
     fetchTransactions();
-  }, []);
+  }, [fetchTransactions]);
 
   return (
     <TransactionsContext.Provider
