@@ -11,6 +11,7 @@ export const SearchFormContainer = styled.form`
       border: 0;
       border-radius: 6px;
       padding: 1rem;
+      font-size: 1rem;
       background-color: ${theme["gray-900"]};
       color: ${theme["gray-300"]};
 

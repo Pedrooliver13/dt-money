@@ -1,5 +1,3 @@
-import { useTransactionContext } from "hooks/useTransactionContext";
-
 // Packages
 import { ReactElement } from "react";
 
@@ -9,6 +7,9 @@ import { Header, Summary } from "components/core";
 
 // Hooks
 import { useTransactionContext } from "hooks/useTransactionContext";
+
+// Utils
+import { dateFormatter, priceFormatter } from "utils/formatter";
 
 // Styles
 import * as Styled from "./styles";
@@ -31,11 +32,14 @@ export const Transactions = (): ReactElement => {
                 <td width="50%">{transaction?.description}</td>
                 <td>
                   <Styled.PriceHighlight variant={transaction?.type}>
-                    R$ 12.000,00
+                    {transaction?.type === "outcome" && "- "}
+                    {priceFormatter.format(transaction?.price)}
                   </Styled.PriceHighlight>
                 </td>
                 <td>{transaction?.category}</td>
-                <td>{transaction?.createdAt}</td>
+                <td>
+                  {dateFormatter.format(new Date(transaction?.createdAt))}
+                </td>
               </tr>
             ))}
           </tbody>
