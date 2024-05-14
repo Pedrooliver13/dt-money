@@ -9,6 +9,9 @@ import {
 // Hooks
 import { useTransactionContext } from "hooks/useTransactionContext";
 
+// Utils
+import { priceFormatter } from "utils/formatter";
+
 // Styles
 import * as Styled from "./styles";
 
@@ -42,7 +45,7 @@ export const Summary = (): ReactElement => {
           <ArrowCircleUpIcon size={32} color="#00b37e" />
         </header>
 
-        <strong>R$ {summary?.income}</strong>
+        <strong>{priceFormatter.format(summary?.income)}</strong>
       </Styled.SummaryCard>
 
       <Styled.SummaryCard>
@@ -51,7 +54,7 @@ export const Summary = (): ReactElement => {
           <ArrowCircleDownIcon size={32} color="#f75a68" />
         </header>
 
-        <strong>R$ {summary?.outcome}</strong>
+        <strong>{priceFormatter.format(summary?.outcome)}</strong>
       </Styled.SummaryCard>
 
       <Styled.SummaryCard variant="green">
@@ -60,7 +63,7 @@ export const Summary = (): ReactElement => {
           <CurrencyDollarIcon size={32} color="#fff" />
         </header>
 
-        <strong>R$ {summary?.total}</strong>
+        <strong>{priceFormatter.format(summary?.total)}</strong>
       </Styled.SummaryCard>
     </Styled.SummaryContainer>
   );
