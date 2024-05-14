@@ -22,9 +22,9 @@ const searchFormSchema = zod.object({
 type SearchFormValues = zod.infer<typeof searchFormSchema>;
 
 export const SearchForm = (): ReactElement => {
-  const fecthTransactions = useContextSelector(
+  const fetchTransactions = useContextSelector(
     TransactionsContext,
-    (context: TransactionContextProps) => context?.fecthTransactions
+    (context: TransactionContextProps) => context?.fetchTransactions
   );
 
   const {
@@ -38,7 +38,7 @@ export const SearchForm = (): ReactElement => {
   const handleSearchTransactions = async (
     data: SearchFormValues
   ): Promise<void> => {
-    await fecthTransactions(data?.query);
+    await fetchTransactions(data?.query);
   };
 
   return (

@@ -16,7 +16,7 @@ interface Transaction {
 
 export interface TransactionContextProps {
   transactions: Array<Transaction>;
-  fecthTransactions: (query?: string) => Promise<void>;
+  fetchTransactions: (query?: string) => Promise<void>;
   createTransaction: (data: CreateTransactionInput) => Promise<void>;
 }
 
@@ -38,7 +38,9 @@ export const TransactionsProvider = ({
 }: TransactionsProviderProps): ReactElement => {
   const [transactions, setTransactions] = useState<Array<Transaction>>([]);
 
-  async function fecthTransactions(query?: string): Promise<void> {
+  async function fetchTransactions(query?: string): Promise<void> {
+    console.log("query", query);
+
     const response = await api.get(`/transactions`, {
       params: {
         _sort: "createdAt",
@@ -67,12 +69,12 @@ export const TransactionsProvider = ({
   }
 
   useEffect(() => {
-    fecthTransactions();
+    fetchTransactions();
   }, []);
 
   return (
     <TransactionsContext.Provider
-      value={{ transactions, fecthTransactions, createTransaction }}
+      value={{ transactions, fetchTransactions, createTransaction }}
     >
       {children}
     </TransactionsContext.Provider>
