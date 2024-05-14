@@ -5,6 +5,9 @@ import { MagnifyingGlass as MagnifyingGlassIcon } from "phosphor-react";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+// Hooks
+import { useTransactionContext } from "hooks/useTransactionContext";
+
 // Styles
 import * as Styled from "./styles";
 
@@ -15,6 +18,8 @@ const searchFormSchema = zod.object({
 type SearchFormValues = zod.infer<typeof searchFormSchema>;
 
 export const SearchForm = (): ReactElement => {
+  const { fecthTransactions } = useTransactionContext();
+
   const {
     register,
     handleSubmit,
@@ -23,8 +28,10 @@ export const SearchForm = (): ReactElement => {
     resolver: zodResolver(searchFormSchema),
   });
 
-  const handleSearchTransactions = (data: SearchFormValues): void => {
-    console.log("data", data);
+  const handleSearchTransactions = async (
+    data: SearchFormValues
+  ): Promise<void> => {
+    await fecthTransactions(data?.query);
   };
 
   return (
