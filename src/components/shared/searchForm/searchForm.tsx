@@ -1,5 +1,5 @@
 // Packages
-import { ReactElement } from "react";
+import { ReactElement, memo } from "react";
 import { useForm } from "react-hook-form";
 import { MagnifyingGlass as MagnifyingGlassIcon } from "phosphor-react";
 import * as zod from "zod";
@@ -21,7 +21,7 @@ const searchFormSchema = zod.object({
 
 type SearchFormValues = zod.infer<typeof searchFormSchema>;
 
-export const SearchForm = (): ReactElement => {
+const SearchFormComponent = (): ReactElement => {
   const fetchTransactions = useContextSelector(
     TransactionsContext,
     (context: TransactionContextProps) => context?.fetchTransactions
@@ -58,3 +58,5 @@ export const SearchForm = (): ReactElement => {
     </Styled.SearchFormContainer>
   );
 };
+
+export const SearchForm = memo(SearchFormComponent);
