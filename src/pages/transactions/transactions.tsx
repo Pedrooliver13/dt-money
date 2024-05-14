@@ -7,6 +7,9 @@ import { ReactElement } from "react";
 import { SearchForm } from "components/shared";
 import { Header, Summary } from "components/core";
 
+// Hooks
+import { useTransactionContext } from "hooks/useTransactionContext";
+
 // Styles
 import * as Styled from "./styles";
 
