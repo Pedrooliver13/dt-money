@@ -34,7 +34,8 @@
           { "path": "zod" },
           { "path": "date-fns" },
           { "path": "axios" },
-          { "path": "phosphor-react" }
+          { "path": "phosphor-react" },
+          { "path": "use-context-selector" }
         ],
         "Routes": [{ "path": "router" }],
         "Libs": [{ "path": "lib/axios" }],
