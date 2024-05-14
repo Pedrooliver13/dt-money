@@ -1,11 +1,12 @@
-import { useTransactionContext } from "hooks/useTransactionContext";
-
 // Packages
 import { ReactElement } from "react";
 
 // Components
 import { SearchForm } from "components/shared";
 import { Header, Summary } from "components/core";
+
+// Hooks
+import { useTransactionContext } from "hooks/useTransactionContext";
 
 // Styles
 import * as Styled from "./styles";
