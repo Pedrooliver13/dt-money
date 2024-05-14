@@ -12,6 +12,7 @@ interface Transaction {
 
 export interface TransactionContextProps {
   transactions: Array<Transaction>;
+  fecthTransactions: (query?: string) => Promise<void>;
 }
 
 interface TransactionsProviderProps {
@@ -25,19 +26,21 @@ export const TransactionsProvider = ({
 }: TransactionsProviderProps): ReactElement => {
   const [transactions, setTransactions] = useState<Array<Transaction>>([]);
 
-  async function loadTransactions(): Promise<void> {
-    const response = await fetch("http://localhost:3333/transactions");
+  async function fecthTransactions(query?: string): Promise<void> {
+    const response = await fetch(
+      `http://localhost:3333/transactions?q=${query}`
+    );
     const data = await response.json();
 
     setTransactions(data);
   }
 
   useEffect(() => {
-    loadTransactions();
+    fecthTransactions();
   }, []);
 
   return (
-    <TransactionsContext.Provider value={{ transactions }}>
+    <TransactionsContext.Provider value={{ transactions, fecthTransactions }}>
       {children}
     </TransactionsContext.Provider>
   );
