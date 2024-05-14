@@ -37,6 +37,7 @@
           { "path": "phosphor-react" }
         ],
         "Routes": [{ "path": "router" }],
+        "Libs": [{ "path": "lib/axios" }],
         "Pages": [{ "path": "pages/" }],
         "Reducers": [{ "path": "reducers" }],
         "Components": [{ "path": "components" }, { "path": "components/" }],
