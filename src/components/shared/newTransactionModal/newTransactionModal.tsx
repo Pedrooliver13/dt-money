@@ -9,9 +9,13 @@ import {
 } from "phosphor-react";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useContextSelector } from "use-context-selector";
 
-// Hooks
-import { useTransactionContext } from "hooks/useTransactionContext";
+// Contexts
+import {
+  TransactionsContext,
+  TransactionContextProps,
+} from "contexts/transactionsContext";
 
 // Styles
 import * as Styled from "./styles";
@@ -26,7 +30,10 @@ const newTransactionSchema = zod.object({
 type NewTransactionFormInputs = zod.infer<typeof newTransactionSchema>;
 
 export const NewTransactionModal = (): ReactElement => {
-  const { createTransaction } = useTransactionContext();
+  const createTransaction = useContextSelector(
+    TransactionsContext,
+    (context: TransactionContextProps) => context?.createTransaction
+  );
 
   const {
     reset,
