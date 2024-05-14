@@ -1,5 +1,11 @@
-// Hooks
-import { useTransactionContext } from "hooks/useTransactionContext";
+// Packages
+import { useContextSelector } from "use-context-selector";
+
+// Contexts
+import {
+  TransactionsContext,
+  TransactionContextProps,
+} from "contexts/transactionsContext";
 
 interface useSummaryResponse {
   income: number;
@@ -8,7 +14,10 @@ interface useSummaryResponse {
 }
 
 export const useSummary = (): useSummaryResponse => {
-  const { transactions } = useTransactionContext();
+  const transactions = useContextSelector(
+    TransactionsContext,
+    (context: TransactionContextProps) => context.transactions
+  );
 
   const summary = transactions.reduce(
     (acc, transaction) => {
