@@ -1,6 +1,6 @@
 // Packages
 import { ReactElement } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   ArrowCircleDown,
@@ -24,6 +24,7 @@ type NewTransactionFormInputs = zod.infer<typeof newTransactionSchema>;
 
 export const NewTransactionModal = (): ReactElement => {
   const {
+    control,
     register,
     handleSubmit,
     formState: { isSubmitting },
@@ -65,17 +66,26 @@ export const NewTransactionModal = (): ReactElement => {
             {...register("category")}
           />
 
-          <Styled.TransactionType>
-            <Styled.TransactionTypeButton variant="income" value="income">
-              <ArrowCircleUpIcon size={24} />
-              Entrada
-            </Styled.TransactionTypeButton>
+          <Controller
+            control={control}
+            name="type"
+            render={({ field }) => (
+              <Styled.TransactionType
+                onValueChange={field.onChange}
+                value={field.value}
+              >
+                <Styled.TransactionTypeButton variant="income" value="income">
+                  <ArrowCircleUpIcon size={24} />
+                  Entrada
+                </Styled.TransactionTypeButton>
 
-            <Styled.TransactionTypeButton variant="outcome" value="outcome">
-              <ArrowCircleDown size={24} />
-              Saída
-            </Styled.TransactionTypeButton>
-          </Styled.TransactionType>
+                <Styled.TransactionTypeButton variant="outcome" value="outcome">
+                  <ArrowCircleDown size={24} />
+                  Saída
+                </Styled.TransactionTypeButton>
+              </Styled.TransactionType>
+            )}
+          />
 
           <button type="submit" disabled={isSubmitting}>
             Cadastrar
