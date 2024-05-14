@@ -33,6 +33,7 @@
           { "path": "@hookform" },
           { "path": "zod" },
           { "path": "date-fns" },
+          { "path": "axios" },
           { "path": "phosphor-react" }
         ],
         "Routes": [{ "path": "router" }],
